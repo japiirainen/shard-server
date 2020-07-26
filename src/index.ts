@@ -17,6 +17,8 @@ server.applyMiddleware({ app })
 
 const port = config.options.port
 
-app.listen({ port }, () => {
-    console.log(`server on at: ${config.options.port}`)
-})
+app.listen({ port }, () =>
+    console.log(
+        `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
+    )
+)

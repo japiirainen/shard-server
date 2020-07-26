@@ -1,12 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-    type Query {
-        hello: String!
-        users: [User!]!
-    }
     type User {
-        _id: String!
+        _id: ID!
         username: String!
         email: String!
         role: UserRole!
@@ -17,7 +13,11 @@ export default gql`
         athlete
         coach
     }
+    type Query {
+        hello: String!
+        users: [User!]!
+    }
     type Mutation {
-        createUser(name: String!): User!
+        register: User
     }
 `
