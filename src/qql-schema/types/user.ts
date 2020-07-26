@@ -17,7 +17,13 @@ export default gql`
         hello: String!
         users: [User!]!
     }
+    input UserInfo {
+        username: String!
+        password: String!
+        email: String!
+        role: String!
+    }
     type Mutation {
-        register: User
+        register(userInfo: UserInfo): User!
     }
 `
