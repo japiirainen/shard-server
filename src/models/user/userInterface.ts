@@ -1,11 +1,14 @@
-enum Role {
-    Athlete,
-    Coach,
+import { ObjectID } from 'mongodb'
+
+export interface ObjectId {
+	_id: ObjectID
 }
 
-export interface userInterface {
-    username: string
-    email: string
-    role: Role
-    friends?: string[]
+export interface UserInterface {
+	username: string
+	email: string
+	role: string
+	friends?: string[]
+	coach?: string
+	athletes?: string
 }

@@ -1,19 +1,17 @@
 import { User } from '../../models/user/user.model'
-import { userInterface } from '../../models/user/userInterface'
+import { UserInterface, ObjectId } from '../../models/user/userInterface'
+
+const findUser = (_: any, { id }: { id: ObjectId }) => User.findById(id._id)
 
 export const someResolver = {
-    Query: {
-        hello: () => 'Hi!',
-        users: () => User.find(),
-    },
-    Mutation: {
-        register: async (
-            parent: any,
-            { userInfo }: { userInfo: userInterface }
-        ) => {
-            console.log(parent)
-            const user = await User.create(userInfo)
-            return user
-        },
-    },
+	Query: {
+		users: () => User.find(),
+		user: findUser,
+	},
+	Mutation: {
+		register: async (_: any, { userInfo }: { userInfo: UserInterface }) => {
+			const user = await User.create(userInfo)
+			return user
+		},
+	},
 }
