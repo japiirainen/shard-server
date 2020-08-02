@@ -1,10 +1,12 @@
-import { findUser, createUser, findAllUsers, getFriends, addFriend } from '../qql-schema/user/user.services'
+import { findAllUsers, createUser, findUser, getFriends, addFriend } from '../qql-schema/user/user.services'
 
 export const resolvers = {
+  User: {
+    friends: getFriends,
+  },
   Query: {
     users: findAllUsers,
     user: findUser,
-    friends: getFriends,
   },
   Mutation: {
     register: createUser,

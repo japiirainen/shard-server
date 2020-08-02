@@ -1,4 +1,3 @@
-import { ObjectID } from 'mongodb'
 import gql from 'graphql-tag'
 
 export default gql`
@@ -23,8 +22,8 @@ export default gql`
   }
 
   input newFriend {
-    _id: String
-    friendId: String
+    userId: ID!
+    friendId: ID!
   }
 
   type Query {
@@ -38,13 +37,3 @@ export default gql`
     addFriend(addFriend: newFriend): User
   }
 `
-
-export type ObjectId = ObjectID
-
-export interface UserInterface {
-  username: string
-  password: string
-  email: string
-  role: string
-  friends?: string[]
-}

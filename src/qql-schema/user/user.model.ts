@@ -1,32 +1,29 @@
-import mongoose from 'mongoose'
+import { prop, getModelForClass, Ref, modelOptions } from '@typegoose/typegoose'
+import { TimeStamps } from '@typegoose/typegoose/lib/defaultClasses'
 
-const userSchema = new mongoose.Schema(
-  {
-    username: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      trim: true,
-      unique: true,
-    },
-    role: {
-      enum: ['coach', 'athlete'],
-      type: String,
-      required: true,
-    },
-    friends: {
-      type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    },
-  },
-  { timestamps: true }
-)
+enum Role {
+  ATHLETE = 'athlete',
+  COACH = 'coach',
+}
 
-export const User = mongoose.model('User', userSchema, 'users')
+@modelOptions({
+  options: { customName: 'users' },
+})
+export class User extends TimeStamps {
+  @prop({ required: true })
+  public username!: string
+
+  @prop({ required: true })
+  public password!: string
+
+  @prop({ enum: Role })
+  public role!: string
+
+  @prop({ required: true })
+  public email!: string
+
+  @prop({ ref: User })
+  public friends?: Array<Ref<User>>
+}
+
+export const UserModel = getModelForClass(User)
