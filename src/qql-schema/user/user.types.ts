@@ -22,14 +22,20 @@ export default gql`
     role: String!
   }
 
+  input newFriend {
+    _id: String
+    friendId: String
+  }
+
   type Query {
     users: [User]
     user(id: String): User
+    friends(id: String): [User]
   }
 
   type Mutation {
     register(userInfo: UserInfo): User!
-    addFriend(id: String): User
+    addFriend(addFriend: newFriend): User
   }
 `
 
