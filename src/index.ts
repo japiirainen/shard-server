@@ -7,8 +7,8 @@ import { connect } from './db/connect'
 connect()
 
 const server = new ApolloServer({
-    ...apiSchema,
-    context: ({ req, res }) => ({ req, res }),
+  ...apiSchema,
+  context: ({ req, res }) => ({ req, res }),
 })
 
 const app = express()
@@ -17,8 +17,4 @@ server.applyMiddleware({ app })
 
 const port = config.options.port
 
-app.listen({ port }, () =>
-    console.log(
-        `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
-    )
-)
+app.listen({ port }, () => console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`))
