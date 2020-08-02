@@ -1,5 +1,5 @@
-import { createUser } from './user.services'
-import { testConnect, closeDatabase, removeAllCollections } from '../../db/connect'
+import { createUser } from '../qql-schema/user/user.services'
+import { testConnect, closeDatabase, removeAllCollections } from '../db/connect'
 
 const userInfo = {
   username: 'Joona',
@@ -8,7 +8,7 @@ const userInfo = {
   role: 'coach',
 }
 
-beforeAll(async () => await testConnect())
+beforeAll(() => testConnect())
 afterAll(async () => {
   await closeDatabase()
   await removeAllCollections()
@@ -17,9 +17,4 @@ afterAll(async () => {
 test('Should create a new user', async () => {
   const user = await createUser(null, { userInfo })
   expect(user.username).toContain('Joona')
-  return
-})
-
-afterEach(async () => {
-  await removeAllCollections()
-})
+}, 3000)
