@@ -1,0 +1,6 @@
+schema: /Users/joonapiirainen/Documents/dev/GitHub/shard-server/src/qql-schema/schema.ts
+generates:
+  ./resolvers-types.ts:
+    plugins:
+      - typescript
+      - typescript-resolvers

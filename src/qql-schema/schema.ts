@@ -1,7 +1,7 @@
-import user from './user/user'
-import { someResolver } from './resolvers'
+import user from './user/user.types'
+import { resolvers } from './resolvers'
 
 export default {
   typeDefs: [user],
-  resolvers: [someResolver],
+  resolvers: [resolvers],
 }

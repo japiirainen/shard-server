@@ -1,16 +1,11 @@
-import { User } from './user/user.model'
-import { UserInterface } from './user/user.types'
-import { findUser } from '../qql-schema/user/user.services'
+import { findUser, createUser, findAllUsers } from '../qql-schema/user/user.services'
 
-export const someResolver = {
+export const resolvers = {
   Query: {
-    users: () => User.find(),
+    users: findAllUsers,
     user: findUser,
   },
   Mutation: {
-    register: async (_: any, { userInfo }: { userInfo: UserInterface }) => {
-      const user = await User.create(userInfo)
-      return user
-    },
+    register: createUser,
   },
 }
