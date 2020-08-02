@@ -1,4 +1,4 @@
-schema: /Users/joonapiirainen/Documents/dev/GitHub/shard-server/src/qql-schema/schema.ts
+schema: http://localhost:5000/graphql
 generates:
   ./resolvers-types.ts:
     plugins:
