@@ -27,27 +27,3 @@ export const connect = () => {
     })
   })
 }
-
-export const testConnect = () => {
-  return new Promise((_resolve, _reject) => {
-    mongoose.connect('mongodb://localhost:27017/shard-test', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    })
-  })
-}
-
-export const closeDatabase = async () => {
-  await mongoose.connection.dropDatabase(() => console.log('db dropped'))
-  await mongoose.connection.close()
-}
-
-export const removeAllCollections = async () => {
-  const collections = Object.keys(mongoose.connection.collections)
-  for (const collectionName of collections) {
-    const collection = mongoose.connection.collections[collectionName]
-    await collection.deleteMany(() => console.log('lol'))
-  }
-}
