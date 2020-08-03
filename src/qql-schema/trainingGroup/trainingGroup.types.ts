@@ -12,15 +12,20 @@ export default gql`
   input newTrainingGroup {
     name: String!
     admin: ID!
-    members: [ID!]
-    workouts: [ID!]
   }
+
+  input newMember {
+    userId: ID!
+    groupId: ID!
+  }
+
   extend type Query {
-    trainingGroup: TrainingGroup!
+    trainingGroup(_id: ID!): TrainingGroup!
     allTrainingGroups: [TrainingGroup]!
   }
 
   extend type Mutation {
     newTrainingGroup(input: newTrainingGroup): TrainingGroup
+    addMemberToTrainingGroup(input: newMember): User!
   }
 `

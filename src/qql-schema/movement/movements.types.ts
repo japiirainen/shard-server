@@ -36,7 +36,7 @@ export default gql`
   }
 
   extend type Mutation {
-    newMovement(input: newMovement): Movement
+    newMovement(input: newMovement): Movement!
     newMovementInWo(input: newMovementInWo): MovementInWo!
   }
 `

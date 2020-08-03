@@ -19,7 +19,7 @@ export class User extends TimeStamps {
   @prop({ enum: Role })
   public role!: string
 
-  @prop({ required: true, unique: true, trim: true })
+  @prop({ required: true, trim: true, unique: true })
   public email!: string
 
   @prop({ ref: User })

@@ -1,13 +1,13 @@
 import { UserInputError } from 'apollo-server'
 import { UserModel, User } from './user.model'
 
-export const findUser = (_: any, { _id }: { _id: User }) => UserModel.findById(_id)
+export const findUser = async (_: any, { _id }: { _id: User }) => await UserModel.findById(_id)
 
-export const createUser = async (_: any, { input }: { input: User }) => UserModel.create(input)
+export const createUser = async (_: any, { input }: { input: User }) => await UserModel.create(input)
 
-export const findAllUsers = () => UserModel.find()
+export const findAllUsers = async () => await UserModel.find()
 
-const isFriends = (id: string, user: User) => user.friends?.map(id => id && id.toString()).includes(id)
+const isFriends = (id: string, user: User) => user.friends?.map((id) => id && id.toString()).includes(id)
 
 export const addFriend = async (_: any, { input }: { input: { userId: string; friendId: string } }) => {
   const friend = await UserModel.findById(input.friendId)

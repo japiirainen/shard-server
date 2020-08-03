@@ -1,26 +1,27 @@
 import * as mongoose from 'mongoose'
-import { UserModel } from '../qql-schema/user/user.model'
-require('dotenv').config()
 
-const models = {
-  user: UserModel,
+export const testConnect = () => {
+  return new Promise((_resolve, _reject) => {
+    mongoose.connect('mongodb://localhost:27017/shard-test', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    })
+    let db = mongoose.connection
+    db.on('error', (err) => {
+      console.log(err)
+    })
+    db.once('connected', () => {
+      console.log('Mongo connected')
+    })
+    db.on('reconnected', () => {
+      console.log('Mongo re-connected')
+    })
+    db.on('disconnected', () => {
+      console.log('Mongo disconnected')
+    })
+  })
 }
 
-export const cleanDB = async (cb: any) => {
-  await models.user.deleteMany({})
-  cb()
-}
-
-export const connectToDB = async () => {
-  const connection = await mongoose.connect(`mongodb://localhost:27017/shard-test`)
-
-  return connection
-}
-
-export const disconnectDB = (cb = () => {}) => {
-  mongoose.disconnect(cb)
-}
-
-export const generateMongooseId = () => {
-  return mongoose.Types.ObjectId()
-}
+export const dropDb = () => mongoose.connection.dropDatabase()
