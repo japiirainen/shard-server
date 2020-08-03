@@ -1,17 +1,17 @@
 import gql from 'graphql-tag'
 
 export default gql`
+  enum USER_ROLE {
+    ATHLETE
+    COACH
+  }
+
   type User {
     _id: ID!
     username: String!
     email: String!
-    role: UserRole!
+    role: USER_ROLE!
     friends: [User]
-  }
-
-  enum UserRole {
-    athlete
-    coach
   }
 
   input UserInfo {
@@ -28,12 +28,12 @@ export default gql`
 
   type Query {
     users: [User]
-    user(id: String): User
-    friends(id: String): [User]
+    user(_id: ID!): User!
+    friends(_id: ID!): [User]
   }
 
   type Mutation {
-    register(userInfo: UserInfo): User!
-    addFriend(addFriend: newFriend): User
+    register(input: UserInfo): User!
+    addFriend(input: newFriend): User
   }
 `

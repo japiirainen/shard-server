@@ -36,19 +36,6 @@ export const testConnect = () => {
       useCreateIndex: true,
       useFindAndModify: false,
     })
-    let db = mongoose.connection
-    db.on('error', err => {
-      console.log(err)
-    })
-    db.once('connected', () => {
-      console.log('Mongo connected')
-    })
-    db.on('reconnected', () => {
-      console.log('Mongo re-connected')
-    })
-    db.on('disconnected', () => {
-      console.log('Mongo disconnected')
-    })
   })
 }
 
@@ -61,6 +48,6 @@ export const removeAllCollections = async () => {
   const collections = Object.keys(mongoose.connection.collections)
   for (const collectionName of collections) {
     const collection = mongoose.connection.collections[collectionName]
-    await collection.deleteMany(() => console.log('collections deleted'))
+    await collection.deleteMany(() => console.log('lol'))
   }
 }
