@@ -1,12 +1,18 @@
 import gql from 'graphql-tag'
 
 export default gql`
+  enum PRIVACY {
+    PRIVATE
+    PUBLIC
+  }
+
   type TrainingGroup {
     _id: ID!
     name: String!
     admin: User!
     members: [User]
     workouts: [Workout]
+    privacy: PRIVACY
   }
 
   input newTrainingGroup {
@@ -20,6 +26,7 @@ export default gql`
   }
 
   input addWorkout {
+    groupId: ID!
     workoutId: ID!
   }
 

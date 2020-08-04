@@ -11,17 +11,16 @@ export default gql`
     creator: User!
     name: String
     description: String
-    movements: [Movement]
+    exercises: [Exercise]
     duration: Int
     privacy: PRIVACY
   }
 
   input newWorkout {
-    _id: ID!
     creator: ID!
-    name: String
-    description: String
-    privacy: PRIVACY
+    name: String!
+    description: String!
+    privacy: PRIVACY!
   }
 
   extend type Query {

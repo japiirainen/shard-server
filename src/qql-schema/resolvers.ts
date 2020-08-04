@@ -9,7 +9,8 @@ import {
   getCreator,
   getMovementInExercise,
 } from './movement/movements.services'
-import { createGroup, getAllGroups, getGroup, addMember } from './trainingGroup/trainingGroup.service'
+import { createGroup, getAllGroups, getGroup, addMember, addWorkout } from './trainingGroup/trainingGroup.service'
+import { createWorkout } from './workout/workout.services'
 
 export const resolvers = {
   User: {
@@ -36,5 +37,7 @@ export const resolvers = {
     newTrainingGroup: createGroup,
     addMemberToTrainingGroup: addMember,
     newExercise: createExercise,
+    addWorkoutToTrainingGroup: addWorkout,
+    newWorkout: createWorkout,
   },
 }

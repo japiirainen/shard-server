@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import { prop, getModelForClass, Ref, modelOptions } from '@typegoose/typegoose'
 import { TimeStamps } from '@typegoose/typegoose/lib/defaultClasses'
-import { Movement } from '../movement/movement.model'
+import { Exercise } from '../movement/movement.model'
 
 enum PRIVACY {
   PRIVATE = 'PRIVATE',
@@ -21,8 +21,8 @@ export class Workout extends TimeStamps {
   @prop()
   public description?: string
 
-  @prop({ ref: Movement })
-  public movements?: Array<Ref<Movement>>
+  @prop({ ref: Exercise })
+  public movements?: Array<Ref<Exercise>>
 
   @prop()
   public duration?: Number
