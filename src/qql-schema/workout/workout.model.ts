@@ -22,7 +22,7 @@ export class Workout extends TimeStamps {
   public description?: string
 
   @prop({ ref: Exercise })
-  public movements?: Array<Ref<Exercise>>
+  public exercises?: Array<Ref<Exercise>>
 
   @prop()
   public duration?: Number

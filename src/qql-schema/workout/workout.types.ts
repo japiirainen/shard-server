@@ -21,6 +21,12 @@ export default gql`
     name: String!
     description: String!
     privacy: PRIVACY!
+    duration: Int
+  }
+
+  input addExercise {
+    workoutId: ID!
+    exerciseId: ID!
   }
 
   extend type Query {
@@ -30,6 +36,6 @@ export default gql`
 
   extend type Mutation {
     newWorkout(input: newWorkout): Workout!
-    addMovement(movement: ID!): Workout!
+    addExerciseToWorkout(input: addExercise): Workout!
   }
 `

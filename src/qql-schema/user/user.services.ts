@@ -1,5 +1,6 @@
 import { UserInputError } from 'apollo-server'
 import { UserModel, User } from './user.model'
+import { isDub } from '../../utils/helpers'
 
 export const findUser = async (_: any, { _id }: { _id: User }) => await UserModel.findById(_id)
 
@@ -7,13 +8,11 @@ export const createUser = async (_: any, { input }: { input: User }) => await Us
 
 export const findAllUsers = async () => await UserModel.find()
 
-const isFriends = (id: string, user: User) => user.friends?.map((id) => id && id.toString()).includes(id)
-
 export const addFriend = async (_: any, { input }: { input: { userId: string; friendId: string } }) => {
   const friend = await UserModel.findById(input.friendId)
   const parent = await UserModel.findById(input.userId)
 
-  if (friend && parent && !isFriends(friend._id, parent)) {
+  if (friend && parent && !isDub(friend._id, parent.friends)) {
     await UserModel.updateOne(
       { _id: input.userId },
       {

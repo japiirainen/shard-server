@@ -9,8 +9,15 @@ import {
   getCreator,
   getMovementInExercise,
 } from './movement/movements.services'
-import { createGroup, getAllGroups, getGroup, addMember, addWorkout } from './trainingGroup/trainingGroup.service'
-import { createWorkout } from './workout/workout.services'
+import {
+  createGroup,
+  getAllGroups,
+  getGroup,
+  addMember,
+  addWorkout,
+  changeGroupPrivacy,
+} from './trainingGroup/trainingGroup.service'
+import { createWorkout, addExerciseToWorkout, getAllWorkouts, getWorkout } from './workout/workout.services'
 
 export const resolvers = {
   User: {
@@ -29,6 +36,8 @@ export const resolvers = {
     movements: getAllMovements,
     exercise: getExercise,
     exercises: getAllExercises,
+    workout: getWorkout,
+    workouts: getAllWorkouts,
   },
   Mutation: {
     register: createUser,
@@ -39,5 +48,7 @@ export const resolvers = {
     newExercise: createExercise,
     addWorkoutToTrainingGroup: addWorkout,
     newWorkout: createWorkout,
+    changeGroupPrivacy: changeGroupPrivacy,
+    addExerciseToWorkout: addExerciseToWorkout,
   },
 }

@@ -1,18 +1,13 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  enum PRIVACY {
-    PRIVATE
-    PUBLIC
-  }
-
   type TrainingGroup {
     _id: ID!
     name: String!
     admin: User!
     members: [User]
     workouts: [Workout]
-    privacy: PRIVACY
+    privacy: PRIVACY!
   }
 
   input newTrainingGroup {
@@ -30,6 +25,11 @@ export default gql`
     workoutId: ID!
   }
 
+  input changePrivacy {
+    _id: ID!
+    privacy: PRIVACY!
+  }
+
   extend type Query {
     trainingGroup(_id: ID!): TrainingGroup!
     allTrainingGroups: [TrainingGroup]!
@@ -37,7 +37,8 @@ export default gql`
 
   extend type Mutation {
     newTrainingGroup(input: newTrainingGroup): TrainingGroup!
-    addMemberToTrainingGroup(input: newMember): User!
+    addMemberToTrainingGroup(input: newMember): TrainingGroup!
     addWorkoutToTrainingGroup(input: addWorkout): TrainingGroup!
+    changeGroupPrivacy(input: changePrivacy): TrainingGroup!
   }
 `
