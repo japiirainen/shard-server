@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  type MovementInWo {
+  type Exercise {
     _id: ID!
     movement: Movement!
     name: String!
@@ -16,12 +16,13 @@ export default gql`
     name: String!
   }
 
-  input newMovementInWo {
+  input newExercise {
     name: String!
     description: String!
     sets: String!
     duration: String!
     creator: ID!
+    movement: String
   }
 
   input newMovement {
@@ -29,14 +30,14 @@ export default gql`
   }
 
   extend type Query {
-    Movement(_id: ID!): Movement!
-    Movements: [Movement]!
-    MovementInWos: [MovementInWo]!
-    MovementInWo(_id: ID!): MovementInWo!
+    movement(_id: ID!): Movement
+    movements: [Movement]
+    exercise(_id: ID!): Exercise!
+    exercises: [Exercise]!
   }
 
   extend type Mutation {
     newMovement(input: newMovement): Movement!
-    newMovementInWo(input: newMovementInWo): MovementInWo!
+    newExercise(input: newExercise): Exercise!
   }
 `

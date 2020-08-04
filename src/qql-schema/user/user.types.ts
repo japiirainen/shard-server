@@ -29,7 +29,6 @@ export default gql`
   type Query {
     users: [User]
     user(_id: ID!): User!
-    friends(_id: ID!): [User]
   }
 
   type Mutation {

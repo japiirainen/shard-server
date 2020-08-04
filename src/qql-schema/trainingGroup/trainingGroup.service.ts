@@ -28,3 +28,5 @@ export const addMember = async (_: any, { input }: { input: { userId: string; gr
   )
   return UserModel.findById(user._id)
 }
+
+export const addWorkout = async () => {}

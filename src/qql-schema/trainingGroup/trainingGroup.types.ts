@@ -19,13 +19,18 @@ export default gql`
     groupId: ID!
   }
 
+  input addWorkout {
+    workoutId: ID!
+  }
+
   extend type Query {
     trainingGroup(_id: ID!): TrainingGroup!
     allTrainingGroups: [TrainingGroup]!
   }
 
   extend type Mutation {
-    newTrainingGroup(input: newTrainingGroup): TrainingGroup
+    newTrainingGroup(input: newTrainingGroup): TrainingGroup!
     addMemberToTrainingGroup(input: newMember): User!
+    addWorkoutToTrainingGroup(input: addWorkout): TrainingGroup!
   }
 `

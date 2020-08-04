@@ -11,14 +11,14 @@ export class Movement extends TimeStamps {
 }
 
 @modelOptions({
-  options: { customName: 'movements-in-workouts' },
+  options: { customName: 'exercises' },
 })
-export class MovementInWo extends TimeStamps {
+export class Exercise extends TimeStamps {
   @prop({ required: true })
   public name!: string
 
   @prop({ ref: Movement })
-  public movement: mongoose.Schema.Types.ObjectId
+  public movement: string
 
   @prop({})
   public description?: string
@@ -27,11 +27,11 @@ export class MovementInWo extends TimeStamps {
   public sets!: string
 
   @prop({ required: true })
-  public duration!: number
+  public duration!: string
 
   @prop({ required: true })
   public creator!: mongoose.Schema.Types.ObjectId
 }
 
 export const MovementModel = getModelForClass(Movement)
-export const MovementInWoModel = getModelForClass(MovementInWo)
+export const ExerciseModel = getModelForClass(Exercise)
