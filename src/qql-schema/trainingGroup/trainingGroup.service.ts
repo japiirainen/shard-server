@@ -75,3 +75,10 @@ export const changeGroupPrivacy = async (_: any, { input }: { input: { _id: stri
   )
   return TrainingGroupModel.findById(input._id)
 }
+
+export const getAdmin = async (trainingGroup: TrainingGroup) => {
+  const user = await UserModel.findById(trainingGroup.admin)
+  console.log(user)
+  if (user) return user
+  throw new ApolloError(`something went wrong!`)
+}

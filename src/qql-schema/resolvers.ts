@@ -16,12 +16,16 @@ import {
   addMember,
   addWorkout,
   changeGroupPrivacy,
+  getAdmin,
 } from './trainingGroup/trainingGroup.service'
 import { createWorkout, addExerciseToWorkout, getAllWorkouts, getWorkout } from './workout/workout.services'
 
 export const resolvers = {
   User: {
     friends: getFriends,
+  },
+  TrainingGroup: {
+    admin: getAdmin,
   },
   Exercise: {
     creator: getCreator,
