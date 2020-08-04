@@ -18,7 +18,13 @@ import {
   changeGroupPrivacy,
   getAdmin,
 } from './trainingGroup/trainingGroup.service'
-import { createWorkout, addExerciseToWorkout, getAllWorkouts, getWorkout } from './workout/workout.services'
+import {
+  createWorkout,
+  addExerciseToWorkout,
+  getAllWorkouts,
+  getWorkout,
+  getExercisesInWorkouts,
+} from './workout/workout.services'
 
 export const resolvers = {
   User: {
@@ -30,6 +36,9 @@ export const resolvers = {
   Exercise: {
     creator: getCreator,
     movement: getMovementInExercise,
+  },
+  Workout: {
+    exercises: getExercisesInWorkouts,
   },
   Query: {
     users: findAllUsers,

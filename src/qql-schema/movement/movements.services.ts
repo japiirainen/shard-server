@@ -45,16 +45,12 @@ export const getAllExercises = async () => {
 }
 
 export const getCreator = async (exercise: Exercise) => {
-  const doc = await ExerciseModel.findOne({ name: exercise.name })
-  if (!doc) throw new UserInputError(`No Exercise found!`)
   const creator = UserModel.findById(exercise.creator)
   if (!creator) throw new ApolloError(`No user found with id: ${exercise.creator}`)
   return creator
 }
 
 export const getMovementInExercise = async (exercise: Exercise) => {
-  const doc = ExerciseModel.findOne({ name: exercise.name })
-  if (!doc) throw new UserInputError(`No Exercise found!`)
   const movement = MovementModel.findOne({ name: exercise.movement })
   if (!movement) throw new UserInputError(`No exercise found with name: ${exercise.movement}`)
   return movement

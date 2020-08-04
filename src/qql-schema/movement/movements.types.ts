@@ -7,7 +7,7 @@ export default gql`
     name: String!
     description: String!
     sets: String!
-    duration: String!
+    duration: Int!
     creator: User!
   }
 
@@ -20,7 +20,7 @@ export default gql`
     name: String!
     description: String!
     sets: String!
-    duration: String!
+    duration: Int!
     creator: ID!
     movement: String
   }

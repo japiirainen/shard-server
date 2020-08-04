@@ -12,8 +12,8 @@ export default gql`
     name: String
     description: String
     exercises: [Exercise]
-    duration: Int
-    privacy: PRIVACY
+    duration: Int!
+    privacy: PRIVACY!
   }
 
   input newWorkout {
@@ -21,7 +21,7 @@ export default gql`
     name: String!
     description: String!
     privacy: PRIVACY!
-    duration: Int
+    duration: Int!
   }
 
   input addExercise {

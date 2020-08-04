@@ -12,6 +12,8 @@ export default gql`
     email: String!
     role: USER_ROLE!
     friends: [User]
+    prs: [Pr]
+    workoutHistory: [TrainingSession]
   }
 
   input UserInfo {

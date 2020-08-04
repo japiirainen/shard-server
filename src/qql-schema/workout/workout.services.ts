@@ -41,3 +41,8 @@ export const addExerciseToWorkout = async (_: any, { input }: { input: { workout
   )
   return await WorkoutModel.findById(workout._id)
 }
+
+export const getExercisesInWorkouts = async (workout: Workout) => {
+  const doc = await ExerciseModel.find({ _id: { $in: workout.exercises } })
+  return doc
+}

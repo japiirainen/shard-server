@@ -27,7 +27,7 @@ export class Exercise extends TimeStamps {
   public sets!: string
 
   @prop({ required: true })
-  public duration!: string
+  public duration!: Number
 
   @prop({ required: true })
   public creator!: mongoose.Schema.Types.ObjectId
