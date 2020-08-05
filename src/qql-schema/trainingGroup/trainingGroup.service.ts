@@ -77,8 +77,19 @@ export const changeGroupPrivacy = async (_: any, { input }: { input: { _id: stri
 }
 
 export const getAdmin = async (trainingGroup: TrainingGroup) => {
-  const user = await UserModel.findById(trainingGroup.admin)
-  console.log(user)
-  if (user) return user
+  const docs = await UserModel.findById(trainingGroup.admin)
+  if (docs) return docs
   throw new ApolloError(`something went wrong!`)
+}
+
+export const getMembers = async (trainingGroup: TrainingGroup) => {
+  const docs = await UserModel.find({ _id: { $in: trainingGroup.members } })
+  if (docs) return docs
+  throw new ApolloError(`No members found!`)
+}
+
+export const getWorkouts = async (trainingGroup: TrainingGroup) => {
+  const docs = WorkoutModel.find({ _id: { $in: trainingGroup.workouts } })
+  if (docs) return docs
+  throw new ApolloError(`No workouts found`)
 }

@@ -1,5 +1,6 @@
 import { prop, getModelForClass, Ref, modelOptions } from '@typegoose/typegoose'
 import { TimeStamps } from '@typegoose/typegoose/lib/defaultClasses'
+import { TrainingSessionModel, TrainingSession, Pr } from '../training-session/trainingSession.model'
 
 enum Role {
   ATHLETE = 'ATHLETE',
@@ -24,6 +25,12 @@ export class User extends TimeStamps {
 
   @prop({ ref: User })
   public friends?: Array<Ref<User>>
+
+  @prop({ ref: Pr })
+  public prs?: Array<Ref<Pr>>
+
+  @prop({ ref: TrainingSessionModel })
+  public workoutHistory?: Array<Ref<TrainingSession>>
 }
 
 export const UserModel = getModelForClass(User)

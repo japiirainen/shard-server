@@ -10,14 +10,29 @@ export default gql`
   }
 
   type Pr {
-      user: User!
-      movement: Movement!
-      result: String!
-      createdAt: Date!
+    user: User!
+    movement: Movement!
+    result: String!
+    createdAt: Date!
   }
 
-  extends type Query {
-      trainingSessions: [TrainingSessions]!
-      trainingSessionsByUser(_id: ID!): [TrainingSessions]!
+  input newPr {
+    user: ID!
+    movement: ID!
+    result: Int!
+  }
+
+  input newTrainingSession {
+    user: ID!
+    workout: ID!
+  }
+
+  extend type Query {
+    trainingSessions: [TrainingSession]!
+    trainingSessionsByUser(_id: ID!): [TrainingSession]!
+  }
+  extend type Mutation {
+    newPr(input: newPr): Pr!
+    addTrainingSession(input: newTrainingSession): TrainingSession!
   }
 `
