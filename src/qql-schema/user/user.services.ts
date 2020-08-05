@@ -1,6 +1,8 @@
 import { UserInputError } from 'apollo-server'
 import { UserModel, User } from './user.model'
 import { isDub } from '../../utils/helpers'
+import { PrModel } from '../training-session/trainingSession.model'
+import { WorkoutModel } from '../workout/workout.model'
 
 export const findUser = async (_: any, { _id }: { _id: User }) => await UserModel.findById(_id)
 
@@ -27,4 +29,8 @@ export const addFriend = async (_: any, { input }: { input: { userId: string; fr
   }
 }
 
-export const getFriends = (user: User) => UserModel.find({ _id: { $in: user.friends } })
+export const getFriends = async (user: User) => await UserModel.find({ _id: { $in: user.friends } })
+
+export const getPrs = async (user: User) => await PrModel.find({ _id: { $in: user.prs } })
+
+export const getWorkoutHistory = async (user: User) => await WorkoutModel.find({ _id: { $in: user.workoutHistory } })

@@ -4,27 +4,27 @@ export default gql`
   scalar Date
 
   type TrainingSession {
+    _id: ID!
     user: User!
     workout: Workout!
     createdAt: Date!
   }
 
   type Pr {
+    _id: ID!
     user: User!
     movement: Movement!
     result: String!
+    workout: Workout!
     createdAt: Date!
+    message: String
   }
 
   input newPr {
     user: ID!
     movement: ID!
-    result: Int!
-  }
-
-  input newTrainingSession {
-    user: ID!
     workout: ID!
+    result: Int!
   }
 
   extend type Query {
@@ -33,6 +33,5 @@ export default gql`
   }
   extend type Mutation {
     newPr(input: newPr): Pr!
-    addTrainingSession(input: newTrainingSession): TrainingSession!
   }
 `

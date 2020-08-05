@@ -1,4 +1,12 @@
-import { findAllUsers, createUser, findUser, getFriends, addFriend } from '../qql-schema/user/user.services'
+import {
+  findAllUsers,
+  createUser,
+  findUser,
+  getFriends,
+  addFriend,
+  getWorkoutHistory,
+  getPrs,
+} from '../qql-schema/user/user.services'
 import {
   createMovement,
   getAllMovements,
@@ -27,11 +35,13 @@ import {
   getWorkout,
   getExercisesInWorkouts,
 } from './workout/workout.services'
-import { createPr, addTrainingSession } from './training-session/trainingSession.services'
+import { saveResult, getMovementsInPrs } from './training-session/trainingSession.services'
 
 export const resolvers = {
   User: {
     friends: getFriends,
+    prs: getPrs,
+    workoutHistory: getWorkoutHistory,
   },
   TrainingGroup: {
     admin: getAdmin,
@@ -44,6 +54,9 @@ export const resolvers = {
   },
   Workout: {
     exercises: getExercisesInWorkouts,
+  },
+  Pr: {
+    movement: getMovementsInPrs,
   },
   Query: {
     users: findAllUsers,
@@ -68,7 +81,6 @@ export const resolvers = {
     newWorkout: createWorkout,
     changeGroupPrivacy: changeGroupPrivacy,
     addExerciseToWorkout: addExerciseToWorkout,
-    newPr: createPr,
-    addTrainingSession: addTrainingSession,
+    newPr: saveResult,
   },
 }
