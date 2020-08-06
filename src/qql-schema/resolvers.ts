@@ -34,6 +34,7 @@ import {
   getAllWorkouts,
   getWorkout,
   getExercisesInWorkouts,
+  getWorkoutCreator,
 } from './workout/workout.services'
 import { saveResult, getMovementsInPrs } from './training-session/trainingSession.services'
 
@@ -54,6 +55,7 @@ export const resolvers = {
   },
   Workout: {
     exercises: getExercisesInWorkouts,
+    creator: getWorkoutCreator,
   },
   Pr: {
     movement: getMovementsInPrs,

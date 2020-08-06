@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose'
+import mongoose from 'mongoose'
 
 export const testConnect = () => {
   return new Promise((_resolve, _reject) => {
@@ -9,7 +9,7 @@ export const testConnect = () => {
       useFindAndModify: false,
     })
     let db = mongoose.connection
-    db.on('error', (err) => {
+    db.on('error', err => {
       console.log(err)
     })
     db.once('connected', () => {

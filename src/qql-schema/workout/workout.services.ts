@@ -2,6 +2,7 @@ import { ApolloError, UserInputError } from 'apollo-server'
 import { Workout, WorkoutModel } from './workout.model'
 import { ExerciseModel } from '../movement/movement.model'
 import { isDub } from '../../utils/helpers'
+import { UserModel } from '../user/user.model'
 
 export const createWorkout = async (_: any, { input }: { input: Workout }) => {
   const doc = WorkoutModel.create(input)
@@ -44,5 +45,10 @@ export const addExerciseToWorkout = async (_: any, { input }: { input: { workout
 
 export const getExercisesInWorkouts = async (workout: Workout) => {
   const doc = await ExerciseModel.find({ _id: { $in: workout.exercises } })
+  return doc
+}
+
+export const getWorkoutCreator = async (workout: Workout) => {
+  const doc = await UserModel.findById(workout.creator)
   return doc
 }
