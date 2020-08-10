@@ -7,7 +7,7 @@ export default gql`
   }
 
   type User {
-    _id: ID!
+    id: ID!
     username: String!
     email: String!
     lastLoginAt: String!
@@ -15,6 +15,10 @@ export default gql`
     friends: [User]
     prs: [Pr]
     workoutHistory: [TrainingSession]
+  }
+
+  type AuthPayload {
+    user: User
   }
 
   input UserInfo {

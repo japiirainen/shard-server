@@ -6,6 +6,8 @@ import {
   addFriend,
   getWorkoutHistory,
   getPrs,
+  login,
+  logout,
 } from '../qql-schema/user/user.services'
 import {
   createMovement,
@@ -43,6 +45,9 @@ export const resolvers = {
     friends: getFriends,
     prs: getPrs,
     workoutHistory: getWorkoutHistory,
+    id(user: any, args: any, context: any, info: any) {
+      return user.issuer
+    },
   },
   TrainingGroup: {
     admin: getAdmin,
@@ -73,6 +78,8 @@ export const resolvers = {
     workouts: getAllWorkouts,
   },
   Mutation: {
+    login: login,
+    logout: logout,
     register: createUser,
     addFriend: addFriend,
     newMovement: createMovement,

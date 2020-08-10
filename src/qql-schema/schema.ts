@@ -9,7 +9,3 @@ import { resolvers } from './resolvers'
 const typeDefs = [user, workout, movement, trainingGroup, pr]
 
 export const schema = makeExecutableSchema({ typeDefs, resolvers })
-// export default {
-//   typeDefs: [user, workout, movement, trainingGroup, pr],
-//   resolvers: [resolvers],
-// }
