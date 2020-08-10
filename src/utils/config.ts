@@ -5,7 +5,9 @@ interface config {
     port: any
     dbURL: any
   }
-  secrets: {}
+  secrets: {
+    magicKey: string | undefined
+  }
 }
 
 export const config: config = {
@@ -13,5 +15,7 @@ export const config: config = {
     port: process.env.PORT,
     dbURL: process.env.DB_URL,
   },
-  secrets: {},
+  secrets: {
+    magicKey: process.env.MAGIC_SECRET_KEY,
+  },
 }

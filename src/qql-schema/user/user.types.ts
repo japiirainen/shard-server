@@ -10,6 +10,7 @@ export default gql`
     _id: ID!
     username: String!
     email: String!
+    lastLoginAt: String!
     role: USER_ROLE!
     friends: [User]
     prs: [Pr]
@@ -34,6 +35,8 @@ export default gql`
   }
 
   type Mutation {
+    login: AuthPayload
+    logout: Boolean
     register(input: UserInfo): User!
     addFriend(input: newFriend): User
   }
