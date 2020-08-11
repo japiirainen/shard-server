@@ -6,8 +6,6 @@ import {
   addFriend,
   getWorkoutHistory,
   getPrs,
-  login,
-  logout,
 } from '../qql-schema/user/user.services'
 import {
   createMovement,
@@ -39,6 +37,7 @@ import {
   getWorkoutCreator,
 } from './workout/workout.services'
 import { saveResult, getMovementsInPrs } from './training-session/trainingSession.services'
+import { login, logout } from '../utils/magic'
 
 export const resolvers = {
   User: {
